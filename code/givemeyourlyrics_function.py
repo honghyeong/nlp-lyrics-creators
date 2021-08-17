@@ -50,12 +50,14 @@ def crawler():
     time.sleep(1)
 
     songs = driver.find_element_by_class_name('section_title')
+    #songs = driver.find_element_by_xpath('//*[@id="content"]/div[3]/h3/a')
     songs.click()
     #가수의 노래 목록 들어가는 부분
 
     time.sleep(1)
     while True:
         try:
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             showmore = driver.find_element_by_xpath('/html/body/div/div/div[3]/div/div/div[3]/div[2]/a/span')
             showmore.click()
         except NoSuchElementException:
