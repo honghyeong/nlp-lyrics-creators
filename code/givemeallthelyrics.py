@@ -10,17 +10,14 @@ import time
 
 def crawler():
 
-    #naver_id = input("네이버 아이디를 입력하세요: ")
-    #naver_pwd = input("네이버 비밀번호를 입력하세요: ")
+    naver_id = input("네이버 아이디를 입력하세요: ")
+    naver_pwd = input("네이버 비밀번호를 입력하세요: ")
 
     search_artists = input("검색할 가수를 쉼표와 띄어쓰기로 구분해서 입력하세요: ")
     search_artists = search_artists.split(', ')
     print('다음 가수들의 가사를 가져옵니다: ',search_artists)
 
     #로그인을 안하면 19금 걸린 노래를 못들어가서 로그인 필요!
-    naver_id = 'tomtom1103'
-    naver_pwd = 'ganjigaejjong'
-
     options = ChromeOptions()
     options.add_argument('--headless')
 
