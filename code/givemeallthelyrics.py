@@ -60,10 +60,19 @@ def crawler():
         wait(driver, 20).until(
             EC.element_to_be_clickable((By.XPATH, '//*[@id="content"]/div[1]/div/a/div[2]/div[1]/div'))).click()
         time.sleep(1)
+        #여기가 검색한 아티스트 입력하는 부분(인기 검색 결과)
 
-        songs = driver.find_element_by_class_name('section_title')
-        #songs = driver.find_element_by_xpath('//*[@id="content"]/div[3]/h3/a')
-        songs.click()
+        driver.find_element_by_xpath('//*[@id="content"]/div[2]/h3/a').click()
+        time.sleep(0.5)
+
+        try:
+            driver.find_element_by_css_selector('#content > div:nth-child(1) > div.summary_section > div.summary_thumb > img')
+            time.sleep(1)
+            driver.back()
+            driver.find_element_by_xpath('//*[@id="content"]/div[3]/h3/a').click()
+
+        except NoSuchElementException:
+            pass
         #가수의 노래 목록 들어가는 부분
 
         time.sleep(1)
