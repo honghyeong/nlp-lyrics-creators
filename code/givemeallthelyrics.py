@@ -12,12 +12,11 @@ def crawler():
 
     naver_id = input("네이버 아이디를 입력하세요: ")
     naver_pwd = input("네이버 비밀번호를 입력하세요: ")
-
     search_artists = input("검색할 가수를 쉼표와 띄어쓰기로 구분해서 입력하세요: ")
     search_artists = search_artists.split(', ')
     print('다음 가수들의 가사를 가져옵니다: ',search_artists)
-
     #로그인을 안하면 19금 걸린 노래를 못들어가서 로그인 필요!
+
     options = ChromeOptions()
     options.add_argument('--headless')
 
@@ -81,6 +80,14 @@ def crawler():
                 time.sleep(1)
             except NoSuchElementException:
                 break
+
+        while True:
+            try:
+                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                driver.find_element_by_xpath('/html/body/div/div/div[3]/div/div/div[3]/div[3]/a/span').click()
+                time.sleep(1)
+            except NoSuchElementException:
+                break
         #곡이 많은 가수들은 곡 더보기를 눌러줘야 전체 목록이 뜨더라고! 아닌 가수는 그냥 패스
 
         nums = list(range(1, 500))
@@ -128,9 +135,14 @@ def crawler():
 
         crawled = pd.DataFrame({"제목": titles, "가사": lyrics_new})
         crawled.to_excel(f'{artist} 가사 crawling.xlsx', encoding='utf-8')
+        print(f"{artist}의 총 곡수: ", len(titles))
         #저장!!
 
+    print('완료!')
+    
 if __name__ == '__main__':
+    start_time = time.time()
     crawler()
+    print((time.time() - start_time)/60, "분 소요")
 
 
