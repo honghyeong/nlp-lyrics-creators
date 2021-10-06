@@ -28,7 +28,6 @@
 <ul>
   <li> <a href="https://huggingface.co/transformers/main_classes/tokenizer.html#transformers.PreTrainedTokenizer">Hugging Face </a> </li>
   <li> <a href="https://github.com/kiyoungkim1/LMkor"> Pretrained GPT </a> </li>
-  <li> <a href="https://github.com/Lyrics-Generation-Project"> Lyrics Generation Project </a> </li>
 </ul>
   
 
